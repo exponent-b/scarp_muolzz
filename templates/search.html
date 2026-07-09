@@ -1,0 +1,27 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>검색결과</h1>
+        <p>인크루트, 고용24, 잡코리아 정보확인</p>
+        <table>
+            <tr>
+                <td>No</td>
+                <td>회사</td>
+                <td>공고 제목</td>
+                <td>지역</td>
+                <td>상세보기링크</td> 
+            </tr>
+            {% for num, job in jobs %} <!--html에서 파이썬 쓰는 법%%// jobs를 app.py에서 받아서 쓸 수 있음-->
+            <tr>
+                <td>{{num + 1}}</td>
+                <td>{{job["company"]}}</td>
+                <td>{{job["title"]}}</td>
+                <td>{{job["location"]}}</td>
+                <td>{{job["link"]}}</td>
+            </tr>
+            {% endfor %} <!--html에서 파이썬 쓰는 법-->
+        </table>
+    </body>
+</html>
