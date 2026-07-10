@@ -23,7 +23,9 @@ def search():
         jobs = db[keyword]
 
     else:
-        jobs = search_incruit(keyword, page)
+        jobs1 = search_incruit(keyword, page)
+        jobs2 = saramin_incruit(keyword, page)
+        jobs = jobs1 + jobs2
         db[keyword] = jobs
 
 
@@ -40,7 +42,10 @@ def file():
     if keyword in db:
         jobs = db[keyword]
     else:
-        jobs = search_incruit(keyword, page)
+        jobs1 = search_incruit(keyword, page)
+        jobs2 = saramin_incruit(keyword, page)
+        jobs = jobs1 + jobs2
+        db[keyword] = jobs
 
         
     save_to_csv(jobs)

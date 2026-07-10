@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def search_incruit(keyword):
+def search_incruit(keyword, page):
     
     url = f"https://search.incruit.com/list/search.asp?col=job&kw={keyword}"
     r = requests.get(url) # GET 요청을 보내서 해당 URL의 응답(Response)을 받아오는 함수
@@ -31,7 +31,7 @@ def search_incruit(keyword):
     return jobs
 
 
-def saramin_incruit(keyword):
+def saramin_incruit(keyword, page):
 
     headers = {
         "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
