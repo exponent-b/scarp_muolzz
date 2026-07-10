@@ -1,8 +1,12 @@
 ### 메인
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file, redirect
 from scrapper import search_incruit ## scrapper.py에서 search_incruit 함수 받음
+from file import save_to_csv
 
 app = Flask(__name__)
+
+db = {}
+page = 5
 
 @app.route('/')
 def hello_world():
@@ -11,11 +15,37 @@ def hello_world():
 @app.route("/search")
 def search():
     keyword = request.args.get("key") # 입력값을 받음
-    #print(keyword)
-    jobs = search_incruit(keyword)
-    # print(jobs)
-    return render_template("search.html", jobs = enumerate(jobs)) # search.html로 보냄
 
+    if keyword == "":
+        return redirect("/")
+
+    if keyword in db:
+        jobs = db[keyword]
+
+    else:
+        jobs = search_incruit(keyword, page)
+        db[keyword] = jobs
+
+
+    return render_template("search.html", jobs = enumerate(jobs), keyword=keyword, count = len(jobs)) # search.html로 보냄
+
+
+@app.route("/file")
+def file():
+    keyword = request.args.get("key")
+
+    if keyword == "":
+        return redirect("/")
+
+    if keyword in db:
+        jobs = db[keyword]
+    else:
+        jobs = search_incruit(keyword, page)
+
+        
+    save_to_csv(jobs)
+    return send_file("./downloads.csv", as_attachment=True)
+    
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

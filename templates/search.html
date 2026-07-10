@@ -1,25 +1,36 @@
 <html>
     <head>
-
-    </head>
-    <body>
-        <h1>검색결과</h1>
+<title>검색결과 | 잡스크랩퍼</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+        <h1>{{ count }} 개의 {{keyword}} 검색한 결과입니다 </h1>
         <p>인크루트, 고용24, 잡코리아 정보확인</p>
+        <a href="/file?keyword={{keyword}}">
+        <button>데이터 다운</button>
+            <p></p>
+        </a>
         <table>
-            <tr>
-                <td>No</td>
-                <td>회사</td>
-                <td>공고 제목</td>
-                <td>지역</td>
-                <td>상세보기링크</td> 
-            </tr>
+            <thead data-theme="dark">
+                <tr>
+                    <th>No</th>
+                    <th>회사</th>
+                    <th>공고 제목</th>
+                    <th>지역</th> 
+                </tr>
+            </thead>
             {% for num, job in jobs %} <!--html에서 파이썬 쓰는 법%%// jobs를 app.py에서 받아서 쓸 수 있음-->
             <tr>
                 <td>{{num + 1}}</td>
                 <td>{{job["company"]}}</td>
-                <td>{{job["title"]}}</td>
+                <td>
+                    <a href = "{{ job['link'] }}" target = "_blank">{{job["title"]}}</a>
+                </td>
                 <td>{{job["location"]}}</td>
-                <td>{{job["link"]}}</td>
             </tr>
             {% endfor %} <!--html에서 파이썬 쓰는 법-->
         </table>
