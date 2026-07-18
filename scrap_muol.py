@@ -22,7 +22,6 @@ def search_musinsa(keyword):
         # browser = p.chromium.launch(headless=True) # render error
         browser = p.chromium.launch(
             headless=True,
-            executable_path="/opt/render/.cache/ms-playwright/chromium-1228/chrome-linux64/chrome",
             args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
         page = browser.new_page()
