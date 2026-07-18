@@ -22,6 +22,7 @@ def search_musinsa(keyword):
         # browser = p.chromium.launch(headless=True) # render error
         browser = p.chromium.launch(
             headless=True,
+            channel="chromium",
             args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
         page = browser.new_page()
@@ -100,6 +101,8 @@ def search_olive(keyword, page):
         browser = p.chromium.launch(
             headless=True,
             args=[
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
                 "--disable-blink-features=AutomationControlled"
             ]
         )
