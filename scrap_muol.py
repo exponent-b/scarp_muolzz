@@ -16,9 +16,8 @@ def search_musinsa(keyword):
     goods_set = set()
 
     url = f"https://www.musinsa.com/category/104/goods?keyword={keyword}&keywordType=keyword&gf=A"
-
+    os.environ["PLAYWRIGHT_BROWSERS_PATH"] = "ms-playwright"
     with sync_playwright() as p:
-
         # browser = p.chromium.launch(headless=True) # render error
         browser = p.chromium.launch(
             headless=True,
