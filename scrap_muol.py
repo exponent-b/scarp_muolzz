@@ -4,6 +4,7 @@
 '''
 import time
 import requests
+import os
 from playwright.sync_api import sync_playwright
 from concurrent.futures import ThreadPoolExecutor
 from bs4 import BeautifulSoup
